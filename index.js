@@ -9,6 +9,7 @@ const app = express();
 const cors = require("cors");
 const authRoute = require("./routes/authRoute");
 const adminRoute = require("./routes/adminRoute");
+const allgamesRoute = require("./routes/allgamesRoute");
 
 // middleware
 app.use(cors());
@@ -20,6 +21,8 @@ app.use(express.json());
 app.use("/", adminRoute);
 
 app.use("/", authRoute);
+
+app.use(allgamesRoute);
 
 app.use((err, req, res, next) => {
     res.status(400).send({ message: err });

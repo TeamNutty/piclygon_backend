@@ -17,16 +17,13 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.DECIMAL(10, 2),
                 allowNull: true,
                 defaultValue: 0,
-                validate: {
-                    isNumeric: true,
-                },
             },
             trailerLink: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(1000),
                 allowNull: false,
             },
             discription: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(500),
                 allowNull: false,
             },
             gameCover: {

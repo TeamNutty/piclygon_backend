@@ -20,7 +20,8 @@ exports.postgame = async (req, res, next) => {
             trailerLink,
             discription,
         });
-        // fs.unlinkSync(req.file.path);
+        req.files.map(item => fs.unlinkSync(req.file.path));
+
         res.send({ result });
         console.log(result);
     } catch (err) {
