@@ -39,6 +39,18 @@ exports.authenticate = async (req, res, next) => {
     }
 };
 
+exports.checkadmin = async (req, res, next) => {
+    try {
+        if (req.user.isAdmin) {
+            next();
+        } else {
+            res.status(400).send({ message: "You are not admin" });
+        }
+    } catch (err) {
+        next(err);
+    }
+};
+
 // register middleware
 exports.register = async (req, res, next) => {
     try {

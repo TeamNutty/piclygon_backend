@@ -47,16 +47,6 @@ module.exports = (sequelize, DataTypes) => {
                     isUrl: true,
                 },
             },
-            like: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0,
-            },
-            dislike: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0,
-            },
         },
         {
             underscored: true,

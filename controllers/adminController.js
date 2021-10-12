@@ -7,7 +7,7 @@ const fs = require("fs");
 exports.postgame = async (req, res, next) => {
     try {
         const { name, price, discount, trailerLink, discription } = req.body;
-        const result = await Promise.all(req.files.map(item => uploadPromise(item.path, { timeout: 200000 })));
+        const result = await Promise.all(req.files.map(item => uploadPromise(item.path, { timeout: 2000000 })));
         console.log(req.files);
 
         const game = await Game.create({
@@ -20,9 +20,9 @@ exports.postgame = async (req, res, next) => {
             trailerLink,
             discription,
         });
-        req.files.map(item => fs.unlinkSync(req.file.path));
+        req.files.map(item => fs.unlinkSync(item.path));
 
-        res.send({ result });
+        res.status(200).send({ result });
         console.log(result);
     } catch (err) {
         next(err);
