@@ -4,6 +4,7 @@ const uploadPromise = util.promisify(cloudinary.uploader.upload);
 const { Game } = require("../models");
 const fs = require("fs");
 
+// create game
 exports.postgame = async (req, res, next) => {
     try {
         const { name, price, discount, trailerLink, discription } = req.body;
