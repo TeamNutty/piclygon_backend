@@ -70,18 +70,22 @@ exports.register = async (req, res, next) => {
             return res.status(400).send({ message: "plz insert lastname" });
         }
 
+        let result = null;
         const hashedPassword = await bcrypt.hash(password, 12);
-        const result = await uploadPromise(req.file.path);
-        console.log(result);
+        if (req.file) {
+            result = await uploadPromise(req.file.path);
+            console.log(result);
+            fs.unlinkSync(req.file.path);
+        }
         const user = await User.create({
             firstName,
             lastName,
             password: hashedPassword,
             email,
-            profilePicture: result.secure_url,
+            profilePicture: result === null ? null : result.secure_url,
         });
         // delete from folder
-        fs.unlinkSync(req.file.path);
+
         res.send({ user });
     } catch (err) {
         next(err);

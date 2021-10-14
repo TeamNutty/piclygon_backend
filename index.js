@@ -1,6 +1,6 @@
 // create model
-// const { sequelize } = require("./models");
-// sequelize.sync({ force: true });
+const { sequelize } = require("./models");
+// sequelize.sync({ alter: true });
 
 // import
 require("dotenv").config();
